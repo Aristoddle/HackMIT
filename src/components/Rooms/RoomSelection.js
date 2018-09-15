@@ -211,12 +211,12 @@ class IntegrationReactSelect extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Input error={this.props.error}
+        <Input
           fullWidth
           inputComponent={SelectWrapped}
           value={this.state.multi}
           onChange={this.handleChange('multi')}
-          placeholder="Please select every type of room in your house."
+          placeholder="Please select room type."
           name="react-select-chip"
           inputProps={{
             classes,
