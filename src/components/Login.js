@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
-import {auth} from '../../firebase/firebase';
+import {auth} from '../firebase/firebase';
 
 import { withRouter, Link} from 'react-router-dom';
 
-import * as routes from '../../constants/routes';
+import * as routes from '../constants/routes';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import BottomBar from '../BottomBar';
 
 const INITIAL_STATE = {
             email: '',
