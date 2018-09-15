@@ -4,3 +4,5 @@ export const LOGIN = '/login';
 export const FORGOT = '/forgot';
 export const VERIFY = '/verify';
 export const INITIAL_Q = '/initial_q';
+export const HOME = '/initial_q';
+export const ROOM_SUMM_Q = 'room_summ_q';

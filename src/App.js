@@ -14,15 +14,19 @@ import * as routes from './constants/routes';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Initial_Q from './components/Initial_Q';
+import RoomSummary from './components/Rooms/RoomSummary';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <HashRouter>
+          <div>
           <Route exact path={routes.SIGN_UP} component={SignUp}/>
           <Route exact path={routes.LOGIN} component={Login}/>
           <Route exact path={routes.INITIAL_Q} component={Initial_Q}/>
+          <Route exact path={routes.ROOM_SUMM_Q} component={RoomSummary}/>
+          </div>
         </HashRouter>
       </div>
     );
