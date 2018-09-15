@@ -15,6 +15,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Landing from './components/Landing';
 import Initial_Q from './components/Initial_Q';
+import RoomSummary from './components/Rooms/RoomSummary';
 
 class App extends Component {
   render() {
@@ -22,10 +23,12 @@ class App extends Component {
       <div className="App">
         <HashRouter>
           <div>
-          <Route exact path={routes.LANDING} component={(props) => {return (<Landing {...props}/>)} }/>
-          <Route exact path={routes.SIGN_UP} component={(props) => {return (<SignUp {...props}/>)} }/>
-          <Route exact path={routes.LOGIN} component={(props) => {return (<Login {...props}/>)} }/>
-          <Route exact path={routes.INITIAL_Q} component={(props) => {return (<Initial_Q {...props}/>)} }/>
+
+          <Route exact path={routes.LANDING} component={Landing}/>
+          <Route exact path={routes.SIGN_UP} component={SignUp}/>
+          <Route exact path={routes.LOGIN} component={Login}/>
+          <Route exact path={routes.INITIAL_Q} component={Initial_Q}/>
+          <Route exact path={routes.ROOM_SUMM_Q} component={RoomSummary}/>
           </div>
         </HashRouter>
       </div>
