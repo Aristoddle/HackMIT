@@ -13,7 +13,8 @@ import Divider from '@material-ui/core/Divider';
 import RoomSummaryInput from './RoomSummaryInput';
 
 const INITIAL_STATE = {
-      roomNames: [''] * 3,
+      roomNames: [],
+      roomNumber: [],
     }
 
 // abstracts the setting of state values by passing in keywords
@@ -41,6 +42,18 @@ class RoomSummary extends Component {
       roomNames[roomNumber] = name;
       this.setState({
         roomNames: roomNames,
+      });
+    }
+
+    componentWillMount() {
+      var rooms = 3;
+      var roomNumbers = [];
+      for (var i = 0; i < rooms; i++) {
+        roomNumbers.push(i + 1);
+      }
+      this.setState({
+        roomNumber: roomNumbers,
+        roomNames: [''] * rooms,
       });
     }
 
@@ -72,10 +85,18 @@ class RoomSummary extends Component {
                       <br/>
                       <Grid container
                         spacing={24}>
-                        <RoomSummaryInput
-                          roomNumber={1}
-                          handleRoomNumberChange={this.handleRoomNumberChange}
-                        />
+                        {this.state.roomNumber.map((n) => {
+                          return (
+                            <div>
+                            <RoomSummaryInput
+                              roomNumber={n}
+                              roomNames={this.state.roomNames}
+                              handleRoomNumberChange={this.handleRoomNumberChange}
+                            />
+                            <br/>
+                            </div>
+                          );
+                        })}
                       </Grid>
                     </CardContent>
               </Card>
