@@ -13,6 +13,7 @@ import * as routes from './constants/routes';
 // route components
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import Initial_Q from './components/Initial_Q';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
         <HashRouter>
           <Route exact path={routes.SIGN_UP} component={SignUp}/>
           <Route exact path={routes.LOGIN} component={Login}/>
+          <Route exact path={routes.INITIAL_Q} component={Initial_Q}/>
         </HashRouter>
       </div>
     );
