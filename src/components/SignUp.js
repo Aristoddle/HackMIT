@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import * as routes from '../../constants/routes';
-// import * as auth from '../firebase/auth';
-import {auth} from '../../firebase/firebase';
+import * as routes from '../constants/routes';
+import {auth} from '../firebase/firebase';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
