@@ -24,6 +24,7 @@ class App extends Component {
       <div className="App">
         <HashRouter>
           <div>
+
           <Route exact path={routes.LANDING} component={Landing}/>
           <Route exact path={routes.SIGN_UP} component={SignUp}/>
           <Route exact path={routes.LOGIN} component={Login}/>
