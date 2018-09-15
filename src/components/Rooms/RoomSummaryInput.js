@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 
 
@@ -37,7 +38,7 @@ class RoomSummaryInput extends Component {
                             id='walls'
                             style={this.style.TextField.fourColumn}
                             label={'Room Name ' + roomNumber}
-                            value={this.state.roomNames[n]}
+                            value={this.state.roomNames[roomNumber]}
                             onChange={(e) => {
                               this.handleRoomNumberChange(roomNumber, e.target.value);
                             }}

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter, Link} from 'react-router-dom';
 
-import * as routes from '../constants/routes';
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
@@ -12,10 +10,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-import RoomSummaryInput from './Rooms/RoomSummaryInput';
+import RoomSummaryInput from './RoomSummaryInput';
 
 const INITIAL_STATE = {
-      roomNames: [],
+      roomNames: [''] * 3,
     }
 
 // abstracts the setting of state values by passing in keywords
@@ -27,21 +25,7 @@ class RoomSummary extends Component {
 
     constructor(props) {
         super(props);
-        var rooms = 3;
-        this.state = {};
         this.style = {
-          TextField: {
-            fourColumn: {
-              'width': '100%',
-              'marginRight': '5%',
-              'marginBottom': '5%',
-            },
-            twoColumn: {
-              'width': '100%',
-              'marginRight': '5%',
-              'marginBottom': '5%',
-            },
-          },
           Button: {
             cornerBottom: {
               'marginBottom':'10px',
@@ -53,7 +37,7 @@ class RoomSummary extends Component {
     }
 
     handleRoomNumberChange(roomNumber, name) {
-      roomNames = this.state.roomNames;
+      var roomNames = this.state.roomNames;
       roomNames[roomNumber] = name;
       this.setState({
         roomNames: roomNames,
@@ -61,8 +45,6 @@ class RoomSummary extends Component {
     }
 
     render() {
-        const {
-        } = this.state;
 
         return (
           <div>
@@ -90,12 +72,10 @@ class RoomSummary extends Component {
                       <br/>
                       <Grid container
                         spacing={24}>
-
                         <RoomSummaryInput
                           roomNumber={1}
                           handleRoomNumberChange={this.handleRoomNumberChange}
                         />
-
                       </Grid>
                     </CardContent>
               </Card>
