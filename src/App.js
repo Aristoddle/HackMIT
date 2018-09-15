@@ -21,10 +21,12 @@ class App extends Component {
     return (
       <div className="App">
         <HashRouter>
-          <Route exact path={routes.LANDING} component={Landing}/>
-          <Route exact path={routes.SIGN_UP} component={SignUp}/>
-          <Route exact path={routes.LOGIN} component={Login}/>
-          <Route exact path={routes.INITIAL_Q} component={Initial_Q}/>
+          <div>
+          <Route exact path={routes.LANDING} component={(props) => {return (<Landing {...props}/>)} }/>
+          <Route exact path={routes.SIGN_UP} component={(props) => {return (<SignUp {...props}/>)} }/>
+          <Route exact path={routes.LOGIN} component={(props) => {return (<Login {...props}/>)} }/>
+          <Route exact path={routes.INITIAL_Q} component={(props) => {return (<Initial_Q {...props}/>)} }/>
+          </div>
         </HashRouter>
       </div>
     );
