@@ -22,10 +22,10 @@ class RoomSummaryInput extends Component {
     }
 
     render() {
-      var {roomNumber, handleRoomNumberChange} = this.props;
+      var {roomNames, roomNumber, handleRoomNumberChange} = this.props;
 
         return (
-          <div>
+          <Grid container spacing={24}>
                         <Grid item xs={12}>
                           <Typography
                             variant='subheading'
@@ -33,12 +33,12 @@ class RoomSummaryInput extends Component {
                             How do you refer to room number {roomNumber}?
                           </Typography>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={10}>
                           <TextField
                             id='walls'
                             style={this.style.TextField.fourColumn}
                             label={'Room Name ' + roomNumber}
-                            value={this.state.roomNames[roomNumber]}
+                            value={roomNames[roomNumber]}
                             onChange={(e) => {
                               this.handleRoomNumberChange(roomNumber, e.target.value);
                             }}
@@ -46,7 +46,8 @@ class RoomSummaryInput extends Component {
                             helperText='Required'
                           />
                         </Grid>
-          </div>
+                        <br/>
+          </Grid>
         );
     }
 }
