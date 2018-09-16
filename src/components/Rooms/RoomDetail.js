@@ -12,6 +12,7 @@ import Divider from '@material-ui/core/Divider';
 
 import RoomSelection from './RoomSelection';
 import { rooms } from './RoomDatasources';
+import ItemTableMin from '../Items/ItemTableMin';
 
 const INITIAL_STATE = {
       roomType: '',
@@ -155,7 +156,24 @@ class RoomDetail extends Component {
                                                     helperText='Required'
                                                   />
                                                 </Grid>
-                        
+                        <Grid item xs={12}>
+                          <ItemTableMin
+                            loadedItem={true}
+                            user={{
+                              email: 'sample'
+                            }}
+                            itemData={[
+                              {
+                                name: 'Nameone',
+                                type: 'fake'
+                              },
+                              {
+                                name: 'yee',
+                                type: 'yee',
+                              }
+                            ]}
+                          />
+                        </Grid>
                       </Grid>
                     </CardContent>
               </Card>
