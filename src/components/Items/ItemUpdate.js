@@ -85,7 +85,10 @@ class ItemUpdate extends Component {
                             style={this.style.TextField.fourColumn}
                             label='Description'
                             value={this.state.description}
-                            onChange={(e) => this.setState(byPropKey('description', e.target.value))}
+                            onChange={(e) => {
+                              this.setState(byPropKey('description', e.target.value));
+
+                            }}
                             type='text'
                           />
                         </Grid>
@@ -95,7 +98,9 @@ class ItemUpdate extends Component {
                             style={this.style.TextField.fourColumn}
                             label='Approximate Date of Purchase'
                             value={this.state.date}
-                            onChange={(e) => this.setState(byPropKey('date', e.target.value))}
+                            onChange={(e) => {
+                              this.setState(byPropKey('date', e.target.value))
+                          }}
                             type='text'
                           />
                         </Grid>
@@ -105,7 +110,9 @@ class ItemUpdate extends Component {
                             style={this.style.TextField.fourColumn}
                             label='Amazon Link to Replacement'
                             value={this.state.amazon}
-                            onChange={(e) => this.setState(byPropKey('amazon', e.target.value))}
+                            onChange={(e) => {
+                              this.setState(byPropKey('amazon', e.target.value))
+                            }}
                             type='text'
                           />
                         </Grid>
@@ -115,7 +122,9 @@ class ItemUpdate extends Component {
                             style={this.style.TextField.fourColumn}
                             label='Features'
                             value={this.state.features}
-                            onChange={(e) => this.setState(byPropKey('features', e.target.value))}
+                            onChange={(e) => {
+                              this.setState(byPropKey('features', e.target.value))
+                            }}
                             type='text'
                             helperText='The more detailed you can be, the better.'
                           />

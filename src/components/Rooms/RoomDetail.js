@@ -14,7 +14,10 @@ import RoomSelection from './RoomSelection';
 import { rooms } from './RoomDatasources';
 import ItemTableMin from '../Items/ItemTableMin';
 
+import {addRoom} from '../../firebase/database/databaseApi';
+
 const INITIAL_STATE = {
+      roomName: 'NameOfRoom',
       roomType: '',
       molding: '',
       wallCovering: '',
@@ -56,6 +59,22 @@ class RoomDetail extends Component {
     handlePreferences = (typeCommittee, value) => {
       this.setState(byPropKey(typeCommittee, value));
     };
+
+    onSubmit = () => {
+      var {user} = this.props;
+      this.state.roomNames.map((name) => {
+        addRoom(user,
+          {
+              userEmail: user.email,
+              roomName: name,
+              roomType: this.state.roomType,
+              molding: this.state.molding,
+              wallCovering: this.state.wallCovering,
+              special: this.state.special,
+          }
+        );
+      });
+    }
 
     render() {
         var roomName = "Joe's room";
@@ -173,6 +192,15 @@ class RoomDetail extends Component {
                               }
                             ]}
                           />
+                        </Grid>
+                      </Grid>
+
+                      <Grid container spacing={24}>
+                        <Grid item xs={10}></Grid>
+                        <Grid item xs={2}>
+                          <Button onClick={this.onSubmit}>
+                            Submit
+                          </Button>
                         </Grid>
                       </Grid>
                     </CardContent>
