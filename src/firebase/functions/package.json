@@ -9,10 +9,22 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "@google-cloud/storage": "^2.0.3",
+    "cors": "^2.8.4",
+    "docusign-esign": "^4.0.2",
+    "firebase": "^5.5.0",
+    "firebase-admin": "^6.0.0",
+    "firebase-functions": "^2.0.5",
+    "firebase-tools": "^4.2.1",
+    "fs": "0.0.1-security",
+    "lint": "^1.1.2",
+=======
     "docusign-esign": "^4.0.2",
     "firebase-admin": "~6.0.0",
     "firebase-functions": "^2.0.3",
     "fs": "0.0.1-security",
+>>>>>>> 9ea8c0ea90b048cfb9d828e782c1990e5f7c1f66
     "pdfkit": "^0.8.3"
   },
   "private": true

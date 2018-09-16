@@ -1,12 +1,10 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-<<<<<<< HEAD
 const fs = require('fs');
 const pdfkit = require('pdfkit');
-=======
 const sendDocumentServer = require('./SignDoc.js');
->>>>>>> master
-
+const cors = require('cors')({origin: true});
+var {Storage} = require('@google-cloud/storage');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -14,13 +12,14 @@ const sendDocumentServer = require('./SignDoc.js');
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
+// admin.initializeApp(functions.config().firebase);
 
-<<<<<<< HEAD
 exports.generatePdf = functions.https.onRequest( (req, res) => {
     var uid = req.query.uid;
     
     admin.firestore().doc('users/' + uid).get().then( (fireDoc) => {
-        if( fireDoc.exists ) {
+        return cors(req, res, () => {
+            if( fireDoc.exists ) {
             
             // create empty pdf document
             let pdf = new pdfkit();
@@ -31,24 +30,42 @@ exports.generatePdf = functions.https.onRequest( (req, res) => {
 
                 let pdfData = Buffer.concat(buffers);
 
-                // ... now send pdfData as attachment ...
-                res.send(buffers);
+                sendDocumentServer(req, res, pdfData.toString('base64'));
 
+                /*
+                // get a storage ref
+                const storage = new Storage({projectId: "hackmit-7c665"});
+                const bucket = storage.bucket("hackmit-7c665");
+                const file = bucket.file("pdfs/" + uid + '.pdf');
+
+                file.save(pdfData, {
+                    metadata: { contentType: 'application/pdf' },
+                    public: true,
+                    validation: 'md5'
+                }, function(error) {
+
+                    if (error) {
+                        res.send(error);
+                    }
+
+                    return res.send('Uploaded');
+                });
+                */
             });
 
             // writes pdf text
             pdf.text('Hello', 100, 100);
             pdf.end();
 
-        } else {
-            res.send("no doc");
-        }
+            } else {
+                res.send("no doc");
+            }
+        })
     }).catch( (error) => {
         res.send(error);
     })
 })
-=======
+
 exports.sendDocument = functions.https.onRequest((request, response) => {
  sendDocumentServer(request, response);
 });
->>>>>>> master

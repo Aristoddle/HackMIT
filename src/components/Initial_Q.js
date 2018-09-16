@@ -9,6 +9,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
+
+import * as routes from '../constants/routes';
+import RouteButton from './RouteButton';
 import {addUserInfo} from '../firebase/database/databaseApi';
 
 const INITIAL_STATE = {
@@ -48,6 +51,7 @@ class Initial_Q extends Component {
             },
           },
         };
+        this.state = {...INITIAL_STATE}
     }
 
     handlePreferences = (typeRoom, value) => {
@@ -60,8 +64,6 @@ class Initial_Q extends Component {
     }
 
     render() {
-        const {
-        } = this.state;
 
         return (
           <div>
@@ -190,9 +192,11 @@ class Initial_Q extends Component {
                       <Grid container spacing={24}>
                         <Grid item xs={10}></Grid>
                         <Grid item xs={2}>
-                          <Button onClick={this.onSubmit}>
+                          <RouteButton
+                            route={routes.ROOM_SUMM_Q}
+                            onSubmit={this.onSubmit}>
                             Submit
-                          </Button>
+                          </RouteButton>
                         </Grid>
                       </Grid>
                     </CardContent>

@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+/src/firebase/functions/node_modules
+src/firebase/functions/package-lock.json
+package-lock.json
 
 # testing
 /coverage
