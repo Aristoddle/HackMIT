@@ -104,7 +104,7 @@ class Initial_Q extends Component {
                             id='walls'
                             style={this.style.TextField.fourColumn}
                             label='Number of Walls'
-                            value={this.state.walls}
+                            value={this.state && this.state.walls}
                             onChange={(e) => this.setState(byPropKey('walls', e.target.value))}
                             type='text'
                             helperText='Required'
@@ -123,7 +123,7 @@ class Initial_Q extends Component {
                             id='roof'
                             style={this.style.TextField.fourColumn}
                             label='Roof Damage?'
-                            value={this.state.roof}
+                            value={this.state && this.state.roof}
                             onChange={(e) => this.setState(byPropKey('roof', e.target.value))}
                             type='text'
                             helperText='Required'
@@ -142,7 +142,7 @@ class Initial_Q extends Component {
                             id='cost'
                             style={this.style.TextField.fourColumn}
                             label='Cost of House'
-                            value={this.state.cost}
+                            value={this.state && this.state.cost}
                             onChange={(e) => this.setState(byPropKey('cost', e.target.value))}
                             type='text'
                             helperText='Required'
@@ -161,7 +161,7 @@ class Initial_Q extends Component {
                             id='footage'
                             style={this.style.TextField.fourColumn}
                             label='Square Footage'
-                            value={this.state.footage}
+                            value={this.state && this.state.footage}
                             onChange={(e) => this.setState(byPropKey('footage', e.target.value))}
                             type='text'
                             helperText='Required'
@@ -180,7 +180,7 @@ class Initial_Q extends Component {
                             id='rooms'
                             style={this.style.TextField.fourColumn}
                             label='Number of Rooms'
-                            value={this.state.rooms}
+                            value={this.state && this.state.rooms}
                             onChange={(e) => this.setState(byPropKey('rooms', e.target.value))}
                             type='text'
                             helperText='Required'
