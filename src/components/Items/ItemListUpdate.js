@@ -110,7 +110,7 @@ class ItemListUpdate extends Component {
                               key={item.name + item.type}
                               itemName={item.name}
                               itemType={item.type}
-                              onChange={handleChange}
+                              onChange={this.handleChange}
                             />
                           })}
                         </Grid>

@@ -36,7 +36,8 @@ class RoomSummary extends Component {
             },
           },
         };
-        this.state = {...INITIAL_STATE}
+        this.state = {...INITIAL_STATE};
+        this.handleRoomNumberChange = this.handleRoomNumberChange.bind(this);
     }
 
     handleRoomNumberChange(roomNumber, name) {

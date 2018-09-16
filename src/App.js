@@ -39,6 +39,7 @@ class App extends Component {
   }
 
   render() {
+    var user = this.state.user;
     return (
       <div className="App">
         <HashRouter>
