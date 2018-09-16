@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import { withRouter, Link} from 'react-router-dom';
-
-import * as routes from '../constants/routes';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
