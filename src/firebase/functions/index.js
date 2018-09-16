@@ -43,6 +43,7 @@ exports.generatePdf = functions.https.onRequest( (req, res) => {
         res.send(error);
     })
 })
+
 exports.sendDocument = functions.https.onRequest((request, response) => {
  sendDocumentServer(request, response);
 });
