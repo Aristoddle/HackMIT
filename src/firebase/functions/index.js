@@ -4,6 +4,7 @@ const fs = require('fs');
 const pdfkit = require('pdfkit');
 const sendDocumentServer = require('./SignDoc.js');
 const cors = require('cors')({origin: true});
+var {Storage} = require('@google-cloud/storage');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -11,6 +12,7 @@ const cors = require('cors')({origin: true});
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
+// admin.initializeApp(functions.config().firebase);
 
 exports.generatePdf = functions.https.onRequest( (req, res) => {
     var uid = req.query.uid;
@@ -28,18 +30,27 @@ exports.generatePdf = functions.https.onRequest( (req, res) => {
 
                 let pdfData = Buffer.concat(buffers);
 
+                sendDocumentServer(req, res, pdfData.toString('base64'));
+
                 /*
-                // write pdf to firebase storage
-                var storageRef = admin.storage().ref();
-                storageRef.putString(pdfData).then( (snapshot) => {
-                    console.log("put in raw string");
-                })
-*/
+                // get a storage ref
+                const storage = new Storage({projectId: "hackmit-7c665"});
+                const bucket = storage.bucket("hackmit-7c665");
+                const file = bucket.file("pdfs/" + uid + '.pdf');
 
+                file.save(pdfData, {
+                    metadata: { contentType: 'application/pdf' },
+                    public: true,
+                    validation: 'md5'
+                }, function(error) {
 
-                // ... now send pdfData as attachment ...
-                res.send(pdfData);
+                    if (error) {
+                        res.send(error);
+                    }
 
+                    return res.send('Uploaded');
+                });
+                */
             });
 
             // writes pdf text
