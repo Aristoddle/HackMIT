@@ -62,14 +62,24 @@ class RoomDetail extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
+      var roomIndex = nextProps.rooms.findIndex((roomInstance) => {
+        return nextProps.room == roomInstance.roomName;
+      });
+      var room = nextProps.rooms[roomIndex];
+      this.setState({
+        userEmail: nextProps.user.email,
+        roomName: room.roomName,
+        roomType: room.roomType,
+        molding: room.molding,
+        wallCovering: room.wallCovering,
+        special: room.special,
+        rooms: this.props.rooms,
+        items: this.props.items,
+      });
       this.forceUpdate();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-      var roomIndex = this.props.rooms.findIndex((roomInstance) => {
-        return this.props.room == roomInstance.roomName;
-      });
-      this.state = this.props.rooms[roomIndex];
     }
 
     onSubmit = () => {
@@ -88,7 +98,7 @@ class RoomDetail extends Component {
     render() {
         var roomName = "Joe's room";
         var {room, user, items} = this.props;
-        items = items ? items.filter((item) => {return item.roomName == room}) : null;
+        var new_items = items = items ? items.filter((item) => {return item.roomName == room}) : null;
 
         return (
           <div>
@@ -191,7 +201,7 @@ class RoomDetail extends Component {
                             room={this.props.room}
                             loadedItem={true}
                             user={user}
-                            itemData={items}
+                            itemData={new_items}
                           />
                         </Grid>
                       </Grid>
