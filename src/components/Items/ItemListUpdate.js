@@ -10,13 +10,10 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
 import ItemUpdate from './ItemUpdate';
+import {addItem} from '../../firebase/database/databaseApi';
 
 const INITIAL_STATE = {
-      walls: '',
-      roof: '',
-      cost: '',
-      footage: '',
-      rooms: '',
+      items: [],
     }
 
 // abstracts the setting of state values by passing in keywords
@@ -54,6 +51,19 @@ class ItemListUpdate extends Component {
     handlePreferences = (typeRoom, value) => {
       this.setState(byPropKey(typeRoom, value));
     };
+
+    onSubmit = () => {
+      var user = this.props;
+      this.state.items.map((item) => {
+        addItem(user, item);
+      });
+    }
+
+    handleChange = (value, key) => {
+      var items = this.state.items;
+      items[key] = value;
+      this.setState({items: items});
+    }
 
     render() {
         var sampleItems = [
@@ -97,12 +107,22 @@ class ItemListUpdate extends Component {
                         <Grid item xs={12}>
                           {sampleItems.map((item) => {
                             return <ItemUpdate
+                              key={item.name + item.type}
                               itemName={item.name}
                               itemType={item.type}
+                              onChange={handleChange}
                             />
                           })}
                         </Grid>
 
+                      </Grid>
+                      <Grid container spacing={24}>
+                        <Grid item xs={10}></Grid>
+                        <Grid item xs={2}>
+                          <Button onClick={this.onSubmit}>
+                            Submit
+                          </Button>
+                        </Grid>
                       </Grid>
                     </CardContent>
               </Card>
