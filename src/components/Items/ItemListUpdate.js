@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
+import RouteButton from '../RouteButton';
+
 import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 
@@ -48,7 +50,7 @@ class ItemListUpdate extends Component {
             },
           },
         };
-        this.state = {...INITIAL_STATE}
+        this.state = {items: this.props.items}
     }
 
     handlePreferences = (typeRoom, value) => {
@@ -64,13 +66,21 @@ class ItemListUpdate extends Component {
 
     handleChange = (value, key) => {
       var items = this.state.items;
-      items[key] = value;
+      var index = items.findIndex((item) => { return item.itemName == key;});
+      var item = items[index];
+      item.amazon = value.amazon;
+      item.features = value.features;
+      item.description = value.description;
+      item.date = value.date;
+      items[index] = item;
       this.setState({items: items});
     }
 
     render() {
       var { room, items } = this.props;
-      var new_items = new_items.filter((item) => {return item.roomName == room;});
+      var new_items = items
+        ? items.filter((item) => {return item.roomName == room;})
+        : [];
 
         return (
           <div>
@@ -102,24 +112,24 @@ class ItemListUpdate extends Component {
                       <Grid container
                         spacing={24}>
                         <Grid item xs={12}>
-                          {new_items.map((item) => {
+                          {new_items ? new_items.map((item) => {
                             return <ItemUpdate
-                              key={item.name + item.type}
-                              itemName={item.name}
-                              itemType={item.type}
+                              key={item.itemName + item.type}
+                              itemName={item.itemName}
+                              itemType={item.itemType}
                               item={item}
                               onChange={this.handleChange.bind(this)}
                             />
-                          })}
+                          }) : null}
                         </Grid>
 
                       </Grid>
                       <Grid container spacing={24}>
                         <Grid item xs={10}></Grid>
                         <Grid item xs={2}>
-                          <Button onClick={this.onSubmit}>
+                          <Link to={routes.DASHBOARD}><Button onClick={this.onSubmit}>
                             Submit
-                          </Button>
+                          </Button></Link>
                         </Grid>
                       </Grid>
                     </CardContent>
