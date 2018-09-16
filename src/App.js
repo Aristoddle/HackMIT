@@ -35,6 +35,32 @@ class App extends Component {
       this.setState({
         'user': user,
       });
+      //Listeners
+      db.collection('user').doc(user.email)
+        .onSnapshot((doc) => {
+          this.setState({
+            addtlInfo: doc.data(),
+          });
+        });
+      db.collection('rooms')
+        .where("userEmail", "==", user.email)
+        .onSnapshot((snapshot) => {
+          var rooms = []
+          snapshot.forEach((childSnapshot) => {
+            var childData = childSnapshot.data();
+            rooms.push(childData);
+          });
+          this.setState({rooms: rooms});
+        });
+      db.collection('items').where("userEmail", "==", user.email)
+        .onSnapshot((snapshot) => {
+          var items = []
+          snapshot.forEach((childSnapshot) => {
+            var childData = childSnapshot.data();
+            items.push(childData);
+          });
+          this.setState({items: items});
+        });
     })
   }
 
@@ -48,19 +74,29 @@ class App extends Component {
           <Route exact path={routes.SIGN_UP} component={SignUp}/>
           <Route exact path={routes.LOGIN} component={Login}/>
           <Route exact path={routes.INITIAL_Q} component={() => {
-            return <Initial_Q user={user}/>;
+            return <Initial_Q user={user} addtlInfo={this.state.addtlInfo}/>;
           }}/>
           <Route exact path={routes.ROOM_SUMM_Q} component={() => {
-            return <RoomSummary user={user}/>;
+            return <RoomSummary
+                      user={user}
+                      rooms={this.state.rooms}
+                      addtlInfo={this.state.addtlInfo}/>;
           }}/>
-          <Route exact path={routes.ROOM_DETAIL_Q} component={() => {
-            return <RoomDetail user={user}/>;
+          <Route path={routes.ROOM_DETAIL_Q} component={(match) => {
+            return <RoomDetail
+              user={user}
+              room={match.match.params.room}
+              rooms={this.state.rooms}
+              items={this.state.items}
+            />;
           }}/>
           <Route path={routes.PDF_RECEIVER} component={ (props) => {return (<PdfReceiver uid={this.state.user} {...props} />)} } />
-          <Route exact path={routes.ITEM_INFO_UPDATE} component={() => {
-            return <ItemListUpdate user={user}/>;
+          <Route  path={routes.ITEM_INFO_UPDATE} component={(match) => {
+            return <ItemListUpdate user={user} room={match.match.params.room}/>;
           }}/>
-          <Route exact path={routes.DASHBOARD} component={Dashboard}/>
+          <Route exact path={routes.DASHBOARD} component={() => {
+            return <Dashboard rooms={this.state.rooms} items={this.state.items}/>
+          }}/>
           </div>
         </HashRouter>
       </div>

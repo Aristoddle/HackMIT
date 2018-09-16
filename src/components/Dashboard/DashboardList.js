@@ -56,7 +56,7 @@ class DashboardList extends Component {
   };
 
   render() {
-    const {user, loadedItem} = this.props;
+    const {user, loadedItem, type} = this.props;
     var itemElement =
       <CardContent>
         <Typography variant='headline'>
@@ -65,14 +65,31 @@ class DashboardList extends Component {
       </CardContent>;
     if(this.state.filteritems && this.state.filteritems.length > 0 ) {
       itemElement = this.state.filteritems.map((item) => {
-        return (
-          <DashboardEntry
-            key={item.type + item.name}
-            item={item}
-            handleEditItem={this.onEditItem}
-            user={user}
-          />
-        );
+        if (type == "Items") {
+          return (
+            <DashboardEntry
+              key={item.itemType + item.itemName}
+              type={type}
+              name={item.itemName}
+              category={item.type}
+              item={item}
+              handleEditItem={this.onEditItem}
+              user={user}
+            />
+          );
+        } else {
+          return (
+            <DashboardEntry
+              key={item.roomType + item.roomName}
+              type={type}
+              name={item.roomName}
+              category={item.roomType}
+              item={item}
+              handleEditItem={this.onEditItem}
+              user={user}
+            />
+          );
+        }
       })
     } else if (loadedItem) {
       itemElement =

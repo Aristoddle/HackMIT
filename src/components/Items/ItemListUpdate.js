@@ -9,6 +9,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
+import { Link } from 'react-router-dom';
+import * as routes from '../../constants/routes';
+
 import ItemUpdate from './ItemUpdate';
 import {addItem} from '../../firebase/database/databaseApi';
 
@@ -66,6 +69,7 @@ class ItemListUpdate extends Component {
     }
 
     render() {
+      var { room } = this.props;
         var sampleItems = [
           {
             name: 'Joe\'s Fan',
@@ -91,7 +95,9 @@ class ItemListUpdate extends Component {
                           <div>
                             <CardContent>
                               <Typography variant='caption' align='left'>Due: 12/1/2018</Typography>
-                              <Typography variant='headline' align='left'>Item Information</Typography>
+                              <Typography variant='headline' align='left'>
+                                Item Information for <Link to={routes.ROOM_DETAIL_Q_WO_PARAM + room}>{room}</Link>
+                              </Typography>
                               <Typography variant='caption' align='left'>
                                 Please fill out more information on each item!
                                 The more info we have, the more money you can get!

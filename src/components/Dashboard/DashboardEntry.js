@@ -11,6 +11,9 @@ import Icon from '@material-ui/core/Icon';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
 
+import { Link } from 'react-router-dom';
+import * as routes from '../../constants/routes';
+
 // abstracts the setting of state values by passing in keywords
 const byPropKey = (propertyName, value) => ({
     [propertyName]: value
@@ -23,19 +26,27 @@ class DashboardEntry extends Component {
   }
 
   render () {
-    const { item, user, type } = this.props;
-    var complete = type == 'item'
-      ? item.name !== '' && item.amazon !== '' && item.features !== ''
+    const { item, user, type, name, category } = this.props;
+    var complete = type == 'Items'
+      ? name !== '' && item.amazon !== '' && item.features !== ''
         && item.date !== '' && item.description
       : item.roomType !== '' && item.molding !== ''
         && item.wallCovering !== '' && item.special !== '';
+    var route = type == 'Items'
+      ? routes.ITEM_INFO_UPDATE_WO_PARAM + name
+      : routes.ROOM_DETAIL_Q_WO_PARAM + name;
+
       return (
       <CardContent id={item.uid}>
         <Grid container spacing={24} alignItems='center'>
             <Grid item xs={1}></Grid>
 
           <Grid item lg className='data'>
-            <Typography className='name' variant='subheading'>{item.name}</Typography>
+            <Typography className='name' variant='subheading'>
+              <Link to={route}>
+                {name}
+              </Link>
+            </Typography>
 
             <Grid container className='subline'
               justify='space-between'
@@ -44,7 +55,7 @@ class DashboardEntry extends Component {
               padding={20}
             >
               <Grid className='email' item xs>
-                <Typography align='left' variant='body1'>{item.type}</Typography>
+                <Typography align='left' variant='body1'>{category}</Typography>
               </Grid>
             </Grid>
           </Grid>

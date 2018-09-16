@@ -7,7 +7,11 @@ export const HOME = '/home';
 export const LANDING = '/';
 export const INITIAL_Q = '/initial_q';
 export const ROOM_SUMM_Q = '/room_summ_q';
-export const ROOM_DETAIL_Q = '/room_detail_q';
+
+export const ROOM_DETAIL_Q = '/room_detail_q/:room';
+export const ROOM_DETAIL_Q_WO_PARAM = '/room_detail_q/';
+
 export const PDF_RECEIVER = '/pdf_receiver';
-export const ITEM_INFO_UPDATE = '/item_info_update';
+export const ITEM_INFO_UPDATE = '/item_info_update/:room';
+export const ITEM_INFO_UPDATE_WO_PARAM = '/item_info_update/';
 export const DASHBOARD = '/dashboard';

@@ -51,7 +51,7 @@ class Initial_Q extends Component {
             },
           },
         };
-        this.state = {...INITIAL_STATE}
+        this.state = this.props.addtlInfo;
     }
 
     handlePreferences = (typeRoom, value) => {
