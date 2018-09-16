@@ -1,11 +1,8 @@
 import React from 'react';
 
 import MenuItem from '@material-ui/core/MenuItem';
-import ClearIcon from '@material-ui/icons/Clear';
 import Chip from '@material-ui/core/Chip';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import CancelIcon from '@material-ui/icons/Cancel';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import Icon from '@material-ui/core/Icon';
 import Input from '@material-ui/core/Input';
 import Select from 'react-select';
 import Typography from '@material-ui/core/Typography';
@@ -45,9 +42,9 @@ function SelectWrapped(props) {
       optionComponent={Option}
       noResultsText={<Typography>{'No results found'}</Typography>}
       arrowRenderer={arrowProps => {
-        return arrowProps.isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />;
+        return arrowProps.isOpen ? <Icon>arrow_drop_up</Icon> : <Icon>arrow_drop_down</Icon>;
       }}
-      clearRenderer={() => <ClearIcon />}
+      clearRenderer={() => <Icon>clear</Icon>}
       valueComponent={valueProps => {
         const { value, children, onRemove } = valueProps;
         const onDelete = event => {
@@ -62,7 +59,7 @@ function SelectWrapped(props) {
               tabIndex={-1}
               label={children}
               className={classes.chip}
-              deleteIcon={<CancelIcon onTouchEnd={onDelete} />}
+              deleteIcon={<Icon onTouchEnd={onDelete}>cancel</Icon>}
               onDelete={onDelete}
             />
           );
@@ -189,7 +186,7 @@ class IntegrationReactSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      multi: null,
+      multi: true,
       multiLabel: null,
     };
 }
