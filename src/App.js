@@ -22,6 +22,11 @@ import { byPropKey } from './constants/lib';
 import ItemListUpdate from './components/Items/ItemListUpdate';
 import Dashboard from './components/Dashboard/Dashboard';
 
+import {renderDoc} from './components/HTMLForm';
+
+
+// {renderDoc(this.state.user, this.state.items, this.state.rooms, this.state.addtlInfo)}
+
 class App extends Component {
 
   constructor(props) {
