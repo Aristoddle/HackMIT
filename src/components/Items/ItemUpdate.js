@@ -89,7 +89,7 @@ class ItemUpdate extends Component {
                             value={this.state.description}
                             onChange={(e) => {
                               this.setState(byPropKey('description', e.target.value), () => {
-                                this.handleChange(this.state, key)
+                                onChange(this.state, key)
                               });
                             }}
                             type='text'
@@ -103,7 +103,7 @@ class ItemUpdate extends Component {
                             value={this.state.date}
                             onChange={(e) => {
                               this.setState(byPropKey('date', e.target.value), () => {
-                                this.handleChange(this.state, key)
+                                onChange(this.state, key)
                               });
                           }}
                             type='text'
@@ -117,7 +117,7 @@ class ItemUpdate extends Component {
                             value={this.state.amazon}
                             onChange={(e) => {
                               this.setState(byPropKey('amazon', e.target.value), () => {
-                                this.handleChange(this.state, key)
+                                onChange(this.state, key)
                               });
                             }}
                             type='text'
@@ -131,7 +131,7 @@ class ItemUpdate extends Component {
                             value={this.state.features}
                             onChange={(e) => {
                               this.setState(byPropKey('features', e.target.value), () => {
-                                this.handleChange(this.state, key)
+                                onChange(this.state, key)
                               });
                             }}
                             type='text'

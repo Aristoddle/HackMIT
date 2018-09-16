@@ -91,6 +91,7 @@ class ItemTableMin extends Component {
       userEmail: user.email,
       itemName: this.state.addItemName,
       type: this.state.addItemType,
+      roomName: this.props.room,
     }
 
     // check to make sure they're not null
