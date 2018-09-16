@@ -157,10 +157,3 @@ render() {
         </div>);
     }
 
-{
-    samp.map((value)=>{return;}
-        <dic>
-)
-}
-
-
