@@ -30,7 +30,27 @@ var userinfo = {
 
 render() {
     return (<div>
+        {/* here, I want to pull the User Info: email, address, name, etc*/}
+        {this.room.map((value, index) => (
+
+        <h1 style="text-align:center">
+            Overall Claim Information  {/* <-- the name of the room */}
+        </h1>
         
+        <h3> Client: {value.clientName} </h3>
+        <h3> Property: {value.address} {value.city} {value.state} {value.zip} </h3>
+        <h3> Client Phone: {value.phone} </h3>
+
+
+        <h3> Estimator: {value.estimator} </h3>
+        <h3> Company: {value.company} </h3>
+        <h3> Business Address: {value.bizAddress} </h3>
+        <h3> Phone: {value.BizPhone} </h3>
+
+        <h3> Date of Incident: {value.incidentDate} </h3>
+        <h3> Incident Type: {value.incidentType} </h3>
+        <h3> Insurance Number: {value.bizAddress} </h3>
+
         {/*  Here, I need value to be the list of 'room's defined above*/}
         {this.room.map((value, index) => (
 
