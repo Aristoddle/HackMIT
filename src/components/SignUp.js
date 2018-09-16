@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import * as routes from '../constants/routes';
-import {auth} from '../firebase/firebase';
+import {auth, db} from '../firebase/firebase';
 import {validateEmail, validatePhone} from '../constants/lib';
 
 import Button from '@material-ui/core/Button';
@@ -16,6 +16,9 @@ const INITIAL_STATE = {
     password1: '',
     password2: '',
     address: '', // zillow?
+    city: '',
+    state: '',
+    zipcode: '',
     phone: '', 
     insuranceCompany: '',
     disaster: '', // will autopopulate a lot of information that everyone shares
@@ -48,34 +51,42 @@ class SignUpForm extends Component {
         // error checking
         if (
             filled.name === ""// name empty
-            || validateEmail(filled.email) // email regex
+            || !validateEmail(filled.email) // email regex
             || filled.password1 === "" // password null
             || filled.password1 !== filled.password2 // passwords don't match
-            || validateEmail(filled.phone) // phone regex
+            || !validatePhone(filled.phone) // phone regex
             || filled.insuranceCompany === "" // insurance company
         ) {
             this.setState(byPropKey('error', 'invalid form data'));
         } else {
-
+            console.log("creating account");
+            // create the user in the auth
             auth.createUserWithEmailAndPassword(this.state.email, this.state.password1)
                 .then(authUser => {
                     this.setState(() => ({...INITIAL_STATE})); // reset the state of the component
-                    authUser.sendEmailVerification()
-                    .then(() => {
-                        history.push(routes.HOME);
-                    })
-                    .catch((e) => {
-                        this.setState({
-                        error: e,
-                        });
-                    });
-                    /* redirect to the home page by adding that location to the top of the history;
-                    history object comes from the larger overall Router object */
+                    history.push(routes.HOME);
                 }).catch(error => {
-                    // console.log(byPropKey('error', error));
+                    console.log(error);
                     this.setState(byPropKey('error', error)); // if there's an error, update the state
             });
 
+            // create the user in the db
+            db.collection("users").add({
+                name: filled.name,   
+                email: filled.email,
+                address: filled.address, // zillow?
+                city: filled.city,
+                state: filled.state,
+                zipcode: filled.zipcode,
+                phone: filled.phone, 
+                insuranceCompany: filled.insuranceCompany,
+                disaster: filled.disaster,
+            }).then( (docRef) => {
+                console.log(docRef.id);
+            }).catch( (error) => {
+                console.log("failed to write");
+                this.setState(byPropKey('error', error)); // if there's an error, update the state
+            })
             event.preventDefault(); // prevents the reload
         }
     }
@@ -96,15 +107,6 @@ class SignUpForm extends Component {
             error
         } = this.state; // deconstructing the state object to assign variables quickly
 
-        var isInvalid = (
-            name === ""// name empty
-            || validateEmail(email) // email regex
-            || password1 === "" // password null
-            || password1 !== password2 // passwords don't match
-            || validateEmail(phone) // phone regex
-            || insuranceCompany === "" // insurance company
-        );
-
         return (
             <div>
                 <TextField
@@ -120,6 +122,13 @@ class SignUpForm extends Component {
                 onChange={ (e) => this.setState( byPropKey('email', e.target.value) ) }
                 type='text'
                 label='Email'/>
+                <br/>
+                <TextField
+                value={phone}
+                style={this.style.fullwidth}
+                onChange={ (e) => this.setState( byPropKey('phone', e.target.value) ) }
+                type='text'
+                label='Phone'/>
                 <br/>
                 <TextField
                 value={password1}
@@ -159,9 +168,9 @@ class SignUpForm extends Component {
                 <TextField
                 value={zipcode}
                 style={this.style.fullwidth}
-                onChange={ (e) => this.setState( byPropKey('phone', e.target.value) ) }
+                onChange={ (e) => this.setState( byPropKey('zipcode', e.target.value) ) }
                 type='text'
-                label='Policy'/>
+                label='zip code'/>
                 <br/>
                 <TextField
                 value={insuranceCompany}
@@ -178,7 +187,6 @@ class SignUpForm extends Component {
                 label='Disaster'/>
                 <br/>
                 <Button color='primary' variant='raised'
-                disabled={isInvalid}
                 style={this.style.fullwidth}
                 onClick={this.onSubmit}> Sign Up </Button>
                 { error && <FormHelperText style={{'color':'#ff5722'}}>Error: { error.message }</FormHelperText> }
