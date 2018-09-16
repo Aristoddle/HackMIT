@@ -8,20 +8,18 @@ class PdfReceiver extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            buffer: [],
-            error: ''
+            response: '',
         }
     }
 
     componentDidMount() {  
         if(this.props.uid !== null) {
-            fetch('https://us-central1-hackmit-7c665.cloudfunctions.net/generatePdf?uid=' + this.props.uid)
+            fetch('http://localhost:4000/' + this.props.uid)
             .then( (results) => {
                 console.log(results);
-                writeFile("/tmp/test.pdf", results);
-                this.setState(byPropKey('buffer', results));
+                this.setState(byPropKey('response', results));
             }).catch( (error) => {
-                this.setState(byPropKey('error', error));
+                this.setState(byPropKey('response', error));
             })
         }
     }
@@ -29,7 +27,7 @@ class PdfReceiver extends Component {
     render() {
         return (
             <div>
-                <Document file={this.state.buffer} />
+                {"the end: " + JSON.stringify(this.state.response)}
             </div>
         )
     }
