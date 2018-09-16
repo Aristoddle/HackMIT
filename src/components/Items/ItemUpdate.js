@@ -9,12 +9,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
-const INITIAL_STATE = {
-      description: '',
-      date: '',
-      amazon: '',
-      features: '',
-    }
 
 // abstracts the setting of state values by passing in keywords
 const byPropKey = (propertyName, value) => ({
@@ -45,7 +39,13 @@ class ItemUpdate extends Component {
             },
           },
         };
-        this.state = {...INITIAL_STATE}
+
+        this.state = {
+              description: this.props.item.description,
+              date: this.props.item.date,
+              amazon: this.props.item.amazon,
+              features: this.props.item.features,
+            }
     }
 
     handlePreferences = (typeRoom, value) => {
@@ -57,7 +57,8 @@ class ItemUpdate extends Component {
           itemName,
           itemType,
           onChange,
-          key
+          key,
+          item
         } = this.props;
 
         return (
@@ -86,10 +87,10 @@ class ItemUpdate extends Component {
                             id='description'
                             style={this.style.TextField.fourColumn}
                             label='Description'
-                            value={this.state.description}
+                            value={this.props.item.description}
                             onChange={(e) => {
                               this.setState(byPropKey('description', e.target.value), () => {
-                                onChange(this.state, key)
+                                onChange(this.state, this.props.item.itemName)
                               });
                             }}
                             type='text'
@@ -100,10 +101,10 @@ class ItemUpdate extends Component {
                             id='date'
                             style={this.style.TextField.fourColumn}
                             label='Approximate Date of Purchase'
-                            value={this.state.date}
+                            value={this.props.item.date}
                             onChange={(e) => {
                               this.setState(byPropKey('date', e.target.value), () => {
-                                onChange(this.state, key)
+                                onChange(this.state, this.props.item.itemName)
                               });
                           }}
                             type='text'
@@ -114,10 +115,10 @@ class ItemUpdate extends Component {
                             id='amazon'
                             style={this.style.TextField.fourColumn}
                             label='Amazon Link to Replacement'
-                            value={this.state.amazon}
+                            value={this.props.item.amazon}
                             onChange={(e) => {
                               this.setState(byPropKey('amazon', e.target.value), () => {
-                                onChange(this.state, key)
+                                onChange(this.state, this.props.item.itemName)
                               });
                             }}
                             type='text'
@@ -128,10 +129,10 @@ class ItemUpdate extends Component {
                             id='features'
                             style={this.style.TextField.fourColumn}
                             label='Features'
-                            value={this.state.features}
+                            value={this.props.item.features}
                             onChange={(e) => {
                               this.setState(byPropKey('features', e.target.value), () => {
-                                onChange(this.state, key)
+                                onChange(this.state, this.props.item.itemName)
                               });
                             }}
                             type='text'
