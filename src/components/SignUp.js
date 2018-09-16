@@ -64,29 +64,29 @@ class SignUpForm extends Component {
             auth.createUserWithEmailAndPassword(this.state.email, this.state.password1)
                 .then(authUser => {
                     this.setState(() => ({...INITIAL_STATE})); // reset the state of the component
-                    history.push(routes.HOME);
+                    // create the user in the db
+                    console.log(authUser);
+                    db.collection("users").doc(authUser.user.uid).set({
+                        name: filled.name,   
+                        email: filled.email,
+                        address: filled.address, // zillow?
+                        city: filled.city,
+                        state: filled.state,
+                        zipcode: filled.zipcode,
+                        phone: filled.phone, 
+                        insuranceCompany: filled.insuranceCompany,
+                        disaster: filled.disaster,
+                    }).then( (docRef) => {
+                        history.push(routes.HOME);
+                    }).catch( (error) => {
+                        console.log(error);
+                        this.setState(byPropKey('error', error)); // if there's an error, update the state
+                    })
                 }).catch(error => {
                     console.log(error);
                     this.setState(byPropKey('error', error)); // if there's an error, update the state
             });
 
-            // create the user in the db
-            db.collection("users").add({
-                name: filled.name,   
-                email: filled.email,
-                address: filled.address, // zillow?
-                city: filled.city,
-                state: filled.state,
-                zipcode: filled.zipcode,
-                phone: filled.phone, 
-                insuranceCompany: filled.insuranceCompany,
-                disaster: filled.disaster,
-            }).then( (docRef) => {
-                console.log(docRef.id);
-            }).catch( (error) => {
-                console.log("failed to write");
-                this.setState(byPropKey('error', error)); // if there's an error, update the state
-            })
             event.preventDefault(); // prevents the reload
         }
     }

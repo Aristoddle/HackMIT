@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+{}
+=======
 {
   "functions": {
     "predeploy": [
@@ -6,3 +9,4 @@
     "source": "functions"
   }
 }
+>>>>>>> master

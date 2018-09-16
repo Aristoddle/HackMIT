@@ -8,4 +8,9 @@ var validatePhone = (phone) => {
     return re.test(String(phone).toLowerCase());
 }
 
-export {validateEmail, validatePhone} ;
+// abstracts the setting of state values by passing in keywords
+const byPropKey = (propertyName, value) => ({
+    [propertyName]: value
+})
+
+export {validateEmail, validatePhone, byPropKey} ;
