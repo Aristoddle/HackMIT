@@ -4,14 +4,12 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.0.3",
-<<<<<<< HEAD
     "@material-ui/icons": "^3.0.1",
-=======
     "ajv": "^6.5.3",
->>>>>>> 9842bac06ee50d014ce058b465fbb65c35b9aa29
     "firebase": "^5.5.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
+    "react-pdf": "^3.0.5",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "react-select": "^2.0.0"
