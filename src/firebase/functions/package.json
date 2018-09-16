@@ -9,18 +9,11 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "docusign-esign": "^4.0.2",
     "firebase-admin": "~6.0.0",
     "firebase-functions": "^2.0.3",
     "fs": "0.0.1-security",
     "pdfkit": "^0.8.3"
-=======
-    "firebase": "^5.5.0",
-    "firebase-admin": "^6.0.0",
-    "firebase-functions": "^2.0.3",
-    "firebase-tools": "^4.2.1",
-    "lint": "^1.1.2"
->>>>>>> master
   },
   "private": true
 }

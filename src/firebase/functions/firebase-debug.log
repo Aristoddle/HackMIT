@@ -1,0 +1,13 @@
+[debug] [2018-09-16T05:39:10.715Z] ----------------------------------------------------------------------
+[debug] [2018-09-16T05:39:10.717Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2018-09-16T05:39:10.717Z] CLI Version:   4.2.1
+[debug] [2018-09-16T05:39:10.717Z] Platform:      darwin
+[debug] [2018-09-16T05:39:10.717Z] Node Version:  v8.5.0
+[debug] [2018-09-16T05:39:10.718Z] Time:          Sun Sep 16 2018 01:39:10 GMT-0400 (EDT)
+[debug] [2018-09-16T05:39:10.718Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-09-16T05:39:10.729Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-16T05:39:10.729Z] > authorizing via signed-in user
+[debug] [2018-09-16T05:39:10.731Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/hackmit-7c665  
+ 
+[debug] [2018-09-16T05:39:11.018Z] <<< HTTP RESPONSE 200
