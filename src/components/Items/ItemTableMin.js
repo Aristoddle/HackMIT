@@ -16,11 +16,13 @@ import ItemEntry from './ItemEntry';
 import SearchBar from './SearchBar';
 import ItemSelection from './ItemSelection';
 import { items } from './ItemDatasources';
+import {addItem} from '../../firebase/database/databaseApi';
 
 // abstracts the setting of state values by passing in keywords
 const byPropKey = (propertyName, value) => ({
     [propertyName]: value
 })
+
 
 class ItemTableMin extends Component {
   constructor(props) {
@@ -70,9 +72,11 @@ class ItemTableMin extends Component {
 
     if (itemIndex > -1) {
       items[itemIndex] = {
+        userEmail: user.email,
         type: item.type,
         name: item.name,
       };
+      addItem(user, items[itemIndex]);
     }
     this.setState({items: items});
   }
@@ -81,6 +85,7 @@ class ItemTableMin extends Component {
     const { user } = this.props;
 
     const item = {
+      userEmail: user.email,
       name: this.state.addItemName,
       type: this.state.addItemType,
     }
@@ -91,6 +96,7 @@ class ItemTableMin extends Component {
       (item.type === '');
     if(!err) {
       // add the new item to the state to view it
+      addItem(user, item);
       var items = this.state.items.reverse();
       items.push(item);
       this.setState({items: items.reverse()});
