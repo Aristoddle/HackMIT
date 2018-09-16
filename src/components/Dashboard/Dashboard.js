@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
+import DashboardList from './DashboardList';
+
 const INITIAL_STATE = {
   rooms: [
     {
@@ -96,31 +98,67 @@ class Dashboard extends Component {
                         </Grid>
                       </Grid>
                       <Grid container
-                      justify='flex-start'
-                      alignItems='baseline'
-                      direction='row'
                       spacing={24}
                       >
-                        <Grid item xs >
+                        <Grid item xs={12} >
                           <div>
                             <CardContent>
                               <Typography variant='title' align='left'>Rooms</Typography>
                             </CardContent>
                           </div>
                         </Grid>
+                        <Grid item xs>
+                          <DashboardList
+                            itemData={[
+                              {
+                                name: 'Placeholder',
+                                type: 'teae',
+                                molding: 'yes',
+                                wallCovering: 'yes',
+                                special: 'yes',
+                              },
+                              {
+                                name: 'adsasda',
+                                type: 'asdasd',
+                                molding: 'asdasd',
+                                wallCovering: 'asdasdas',
+                                special: '',
+                              },
+                            ]}
+                          />
+                        </Grid>
                       </Grid>
                       <Grid container
-                      justify='flex-start'
-                      alignItems='baseline'
-                      direction='row'
                       spacing={24}
                       >
-                        <Grid item xs >
+                        <Grid item xs={12} >
                           <div>
                             <CardContent>
                               <Typography variant='title' align='left'>Items</Typography>
                             </CardContent>
                           </div>
+                        </Grid>
+                        <Grid item xs>
+                          <DashboardList
+                            itemData={[
+                              {
+                                name: 'asdasdasd',
+                                type: 'yeeee',
+                                description: 'asdasd',
+                                date: '',
+                                amazon: 'asdasdasd',
+                                features: 'asdasdsd',
+                              },
+                              {
+                                name: 'dsfdfsdf',
+                                type: 'asdsadasd',
+                                description: 'asdasda',
+                                date: 'asdasd',
+                                amazon: 'asdasd',
+                                features: 'adsadasd',
+                              },
+                            ]}
+                          />
                         </Grid>
                       </Grid>
                     </CardContent>
