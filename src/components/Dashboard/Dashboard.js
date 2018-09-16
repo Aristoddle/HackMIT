@@ -11,30 +11,6 @@ import Divider from '@material-ui/core/Divider';
 
 import DashboardList from './DashboardList';
 
-const INITIAL_STATE = {
-  rooms: [
-    {
-      name: 'Sons Room',
-      type: 'Bedroom'
-    },
-    {
-      name: 'Master BedRoom',
-      type: 'Bedroom',
-    }
-  ],
-  items: [
-      {
-        name: 'Joe Fan',
-        type: 'Fan',
-        room: 'Sons Room',
-      },
-      {
-        name: 'Master BR Bed',
-        type: 'Bed',
-        room: 'Master BedRoom',
-      },
-  ],
-    }
 
 // abstracts the setting of state values by passing in keywords
 const byPropKey = (propertyName, value) => ({
@@ -65,16 +41,9 @@ class Dashboard extends Component {
             },
           },
         };
-        this.state = {...INITIAL_STATE}
     }
 
-    handlePreferences = (typeRoom, value) => {
-      this.setState(byPropKey(typeRoom, value));
-    };
-
     render() {
-        const {
-        } = this.state;
 
         return (
           <div>
@@ -109,22 +78,8 @@ class Dashboard extends Component {
                         </Grid>
                         <Grid item xs>
                           <DashboardList
-                            itemData={[
-                              {
-                                name: 'Placeholder',
-                                type: 'teae',
-                                molding: 'yes',
-                                wallCovering: 'yes',
-                                special: 'yes',
-                              },
-                              {
-                                name: 'adsasda',
-                                type: 'asdasd',
-                                molding: 'asdasd',
-                                wallCovering: 'asdasdas',
-                                special: '',
-                              },
-                            ]}
+                            type="Rooms"
+                            itemData={this.props.rooms}
                           />
                         </Grid>
                       </Grid>
@@ -140,24 +95,8 @@ class Dashboard extends Component {
                         </Grid>
                         <Grid item xs>
                           <DashboardList
-                            itemData={[
-                              {
-                                name: 'asdasdasd',
-                                type: 'yeeee',
-                                description: 'asdasd',
-                                date: '',
-                                amazon: 'asdasdasd',
-                                features: 'asdasdsd',
-                              },
-                              {
-                                name: 'dsfdfsdf',
-                                type: 'asdsadasd',
-                                description: 'asdasda',
-                                date: 'asdasd',
-                                amazon: 'asdasd',
-                                features: 'adsadasd',
-                              },
-                            ]}
+                            type="Items"
+                            itemData={this.props.items}
                           />
                         </Grid>
                       </Grid>

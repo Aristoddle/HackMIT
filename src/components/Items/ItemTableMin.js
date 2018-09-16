@@ -18,6 +18,9 @@ import ItemSelection from './ItemSelection';
 import { items } from './ItemDatasources';
 import {addItem} from '../../firebase/database/databaseApi';
 
+import { Link } from 'react-router-dom';
+import * as routes from '../../constants/routes';
+
 // abstracts the setting of state values by passing in keywords
 const byPropKey = (propertyName, value) => ({
     [propertyName]: value
@@ -86,13 +89,13 @@ class ItemTableMin extends Component {
 
     const item = {
       userEmail: user.email,
-      name: this.state.addItemName,
+      itemName: this.state.addItemName,
       type: this.state.addItemType,
     }
 
     // check to make sure they're not null
     const err =
-      (item.name === '') ||
+      (item.itemName === '') ||
       (item.type === '');
     if(!err) {
       // add the new item to the state to view it
@@ -144,6 +147,7 @@ class ItemTableMin extends Component {
           </Typography>
         </CardContent>;
     }
+      var { room } = this.props;
 
     return (
       <div>
@@ -159,7 +163,11 @@ class ItemTableMin extends Component {
                 <CardContent>
                   <Typography variant='caption' align='left'>Due: 12/1/2018</Typography>
                   <Typography variant='headline' align='left'>Damaged Item List</Typography>
-                  <Typography variant='caption' align='left'>Please list all items damaged in the room</Typography>
+                  <Typography variant='caption' align='left'>
+                    Please list all items damaged in the room.
+                    To fill out more detailed info, please go
+                    <Link to={routes.ITEM_INFO_UPDATE_WO_PARAM + room}> here.</Link>
+                  </Typography>
                 </CardContent>
               </div>
             </Grid>

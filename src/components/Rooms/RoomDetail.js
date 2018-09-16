@@ -13,16 +13,10 @@ import Divider from '@material-ui/core/Divider';
 import RoomSelection from './RoomSelection';
 import { rooms } from './RoomDatasources';
 import ItemTableMin from '../Items/ItemTableMin';
+import RouteButton from '../RouteButton';
+import * as routes from '../../constants/routes';
 
 import {addRoom} from '../../firebase/database/databaseApi';
-
-const INITIAL_STATE = {
-      roomName: 'NameOfRoom',
-      roomType: '',
-      molding: '',
-      wallCovering: '',
-      special: '',
-    }
 
 // abstracts the setting of state values by passing in keywords
 const byPropKey = (propertyName, value) => ({
@@ -53,31 +47,48 @@ class RoomDetail extends Component {
             },
           },
         };
-        this.state = {...INITIAL_STATE}
+        this.state = {
+            userEmail: '',
+            roomName: '',
+            roomType: '',
+            molding: '',
+            wallCovering: '',
+            special: '',
+        };
     }
 
     handlePreferences = (typeCommittee, value) => {
-      this.setState(byPropKey(typeCommittee, value));
+      this.setState(byPropKey(typeCommittee, value.value));
     };
+
+    componentWillReceiveProps(nextProps) {
+      this.forceUpdate();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+      var roomIndex = this.props.rooms.findIndex((roomInstance) => {
+        return this.props.room == roomInstance.roomName;
+      });
+      this.state = this.props.rooms[roomIndex];
+    }
 
     onSubmit = () => {
       var {user} = this.props;
-      this.state.roomNames.map((name) => {
-        addRoom(user,
+      addRoom(user,
           {
               userEmail: user.email,
-              roomName: name,
+              roomName: this.state.roomName,
               roomType: this.state.roomType,
               molding: this.state.molding,
               wallCovering: this.state.wallCovering,
               special: this.state.special,
-          }
-        );
-      });
+          });
     }
 
     render() {
         var roomName = "Joe's room";
+        var {room, user, items} = this.props;
+        items = items ? items.filter((item) => {return item.roomName == room}) : null;
 
         return (
           <div>
@@ -177,20 +188,10 @@ class RoomDetail extends Component {
                                                 </Grid>
                         <Grid item xs={12}>
                           <ItemTableMin
+                            room={this.props.room}
                             loadedItem={true}
-                            user={{
-                              email: 'sample'
-                            }}
-                            itemData={[
-                              {
-                                name: 'Nameone',
-                                type: 'fake'
-                              },
-                              {
-                                name: 'yee',
-                                type: 'yee',
-                              }
-                            ]}
+                            user={user}
+                            itemData={items}
                           />
                         </Grid>
                       </Grid>
@@ -198,9 +199,11 @@ class RoomDetail extends Component {
                       <Grid container spacing={24}>
                         <Grid item xs={10}></Grid>
                         <Grid item xs={2}>
-                          <Button onClick={this.onSubmit}>
+                          <RouteButton
+                            route={routes.ITEM_INFO_UPDATE_WO_PARAM + room}
+                            onSubmit={this.onSubmit}>
                             Submit
-                          </Button>
+                          </RouteButton>
                         </Grid>
                       </Grid>
                     </CardContent>

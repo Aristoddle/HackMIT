@@ -43,7 +43,7 @@ class RoomSummary extends Component {
         this.handleRoomNumberChange = this.handleRoomNumberChange.bind(this);
     }
 
-    handleRoomNumberChange = (roomNumber, name) => {
+    handleRoomNumberChange(roomNumber, name) {
       var roomNames = this.state.roomNames;
       roomNames[roomNumber] = name;
       this.setState({
@@ -52,15 +52,19 @@ class RoomSummary extends Component {
     }
 
     componentWillMount() {
-      var rooms = 3;
-      var roomNumbers = [];
-      for (var i = 0; i < rooms; i++) {
-        roomNumbers.push(i + 1);
+      var addtlInfo = this.props.addtlInfo ? this.props.addtlInfo : 0;
+      var number = addtlInfo.rooms;
+      var roomNames = [];
+      var roomNumber = [];
+      for (var i = 0; i < number; i++) {
+        roomNames.push('');
+        roomNumber.push(i + 1);
       }
-      this.setState({
-        roomNumber: roomNumbers,
-        roomNames: [''] * rooms,
-      });
+
+      this.setState = {
+        roomNames: roomNames,
+        roomNumber: roomNumber,
+      }
     }
 
     onSubmit = () => {
@@ -113,7 +117,7 @@ class RoomSummary extends Component {
                             <RoomSummaryInput
                               roomNumber={n}
                               roomNames={this.state.roomNames}
-                              handleRoomNumberChange={this.handleRoomNumberChange}
+                              handleRoomNumberChange={this.handleRoomNumberChange.bind(this)}
                             />
                             <br/>
                             </div>

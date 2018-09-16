@@ -68,7 +68,7 @@ class ItemEntry extends Component {
             <Grid item xs={1}></Grid>
 
           <Grid item lg className='data'>
-            <Typography className='name' variant='subheading'>{item.name}</Typography>
+            <Typography className='name' variant='subheading'>{item.itemName}</Typography>
 
             <Grid container className='subline'
               justify='space-between'

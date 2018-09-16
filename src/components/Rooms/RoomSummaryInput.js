@@ -22,7 +22,7 @@ class RoomSummaryInput extends Component {
     }
 
     render() {
-      var {roomNames, roomNumber, handleRoomNumberChange} = this.props;
+      var {roomNames, roomNumber} = this.props;
 
         return (
           <Grid container spacing={24}>
@@ -40,7 +40,7 @@ class RoomSummaryInput extends Component {
                             label={'Room Name ' + roomNumber}
                             value={roomNames[roomNumber]}
                             onChange={(e) => {
-                              handleRoomNumberChange(roomNumber, e.target.value);
+                              this.props.handleRoomNumberChange(roomNumber, e.target.value);
                             }}
                             type='text'
                             helperText='Required'
