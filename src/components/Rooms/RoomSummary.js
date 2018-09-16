@@ -12,6 +12,8 @@ import Divider from '@material-ui/core/Divider';
 
 import RoomSummaryInput from './RoomSummaryInput';
 
+import {addRoom} from '../../firebase/database/databaseApi';
+
 const INITIAL_STATE = {
       roomNames: [],
       roomNumber: [],
@@ -57,6 +59,22 @@ class RoomSummary extends Component {
       });
     }
 
+    onSubmit = () => {
+      var {user} = this.props;
+      this.state.roomNames.map((name) => {
+        addRoom(user,
+          {
+              userEmail: user.email,
+              roomName: name,
+              roomType: '',
+              molding: '',
+              wallCovering: '',
+              special: '',
+          }
+        );
+      });
+    }
+
     render() {
 
         return (
@@ -97,6 +115,15 @@ class RoomSummary extends Component {
                             </div>
                           );
                         })}
+                      </Grid>
+
+                      <Grid container spacing={24}>
+                        <Grid item xs={10}></Grid>
+                        <Grid item xs={2}>
+                          <Button onClick={this.onSubmit}>
+                            Submit
+                          </Button>
+                        </Grid>
                       </Grid>
                     </CardContent>
               </Card>

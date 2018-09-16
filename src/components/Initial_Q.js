@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
+import {addUserInfo} from '../firebase/database/databaseApi';
+
 const INITIAL_STATE = {
       walls: '',
       roof: '',
@@ -46,12 +48,16 @@ class Initial_Q extends Component {
             },
           },
         };
-        this.state = {...INITIAL_STATE}
     }
 
     handlePreferences = (typeRoom, value) => {
       this.setState(byPropKey(typeRoom, value));
     };
+
+    onSubmit = () => {
+      var {user} = this.props;
+      addUserInfo(user, this.state);
+    }
 
     render() {
         const {
@@ -179,6 +185,15 @@ class Initial_Q extends Component {
                           />
                         </Grid>
 
+                      </Grid>
+
+                      <Grid container spacing={24}>
+                        <Grid item xs={10}></Grid>
+                        <Grid item xs={2}>
+                          <Button onClick={this.onSubmit}>
+                            Submit
+                          </Button>
+                        </Grid>
                       </Grid>
                     </CardContent>
               </Card>
