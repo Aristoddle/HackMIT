@@ -1,9 +1,12 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+<<<<<<< HEAD
 const fs = require('fs');
 const pdfkit = require('pdfkit');
+=======
+const sendDocumentServer = require('./SignDoc.js');
+>>>>>>> master
 
-admin.initializeApp(functions.config().firebase);
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -12,6 +15,7 @@ admin.initializeApp(functions.config().firebase);
 //  response.send("Hello from Firebase!");
 // });
 
+<<<<<<< HEAD
 exports.generatePdf = functions.https.onRequest( (req, res) => {
     var uid = req.query.uid;
     
@@ -43,3 +47,8 @@ exports.generatePdf = functions.https.onRequest( (req, res) => {
         res.send(error);
     })
 })
+=======
+exports.sendDocument = functions.https.onRequest((request, response) => {
+ sendDocumentServer(request, response);
+});
+>>>>>>> master

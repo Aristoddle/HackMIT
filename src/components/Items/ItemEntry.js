@@ -12,6 +12,15 @@ import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
 
 
+import ItemSelection from './ItemSelection';
+import { items } from './ItemDatasources';
+
+// abstracts the setting of state values by passing in keywords
+const byPropKey = (propertyName, value) => ({
+    [propertyName]: value
+})
+
+
 class ItemEntry extends Component {
   constructor(props) {
       super(props);
@@ -44,6 +53,11 @@ class ItemEntry extends Component {
 
     this.setState({editMode: false});
   }
+
+
+  handleType = (typeItem, value) => {
+    this.setState(byPropKey(typeItem, value.value));
+  };
 
   render () {
     const { item, user } = this.props;
@@ -108,13 +122,12 @@ class ItemEntry extends Component {
               padding={20}
             >
               <Grid className='email' item xs>
-                <Input
-                  placeholder='Type'
+                <ItemSelection
+                  typeRoom="editItemType"
+                  handleItemType={this.handleType}
                   value={this.state.editItemType}
-                  onChange={(e) => {this.setState({editItemType:e.target.value});
-                  }
-                }
-                disableUnderline/>
+                  dataSource={items}
+                />
               </Grid>
             </Grid>
           </Grid>

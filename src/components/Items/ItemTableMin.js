@@ -14,6 +14,13 @@ import IconButton from '@material-ui/core/IconButton';
 
 import ItemEntry from './ItemEntry';
 import SearchBar from './SearchBar';
+import ItemSelection from './ItemSelection';
+import { items } from './ItemDatasources';
+
+// abstracts the setting of state values by passing in keywords
+const byPropKey = (propertyName, value) => ({
+    [propertyName]: value
+})
 
 class ItemTableMin extends Component {
   constructor(props) {
@@ -100,6 +107,10 @@ class ItemTableMin extends Component {
     }
   }
 
+  handleType = (typeItem, value) => {
+    this.setState(byPropKey(typeItem, value.value));
+  };
+
   render() {
     const {user, loadedItem} = this.props;
     var itemElement =
@@ -182,12 +193,12 @@ class ItemTableMin extends Component {
                   padding={20}
                 >
                   <Grid id='email' item xs>
-                    <Input placeholder='Type' value={this.state.addItemType} onChange={
-                    (e) => {
-                      this.setState({addItemType:e.target.value});
-                      }
-                    }
-                    disableUnderline/>
+                    <ItemSelection
+                      typeRoom="addItemType"
+                      handleItemType={this.handleType}
+                      value={this.state.addItemType}
+                      dataSource={items}
+                    />
                   </Grid>
                 </Grid>
               </Grid>
