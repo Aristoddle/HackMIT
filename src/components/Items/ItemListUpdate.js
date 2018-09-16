@@ -69,17 +69,8 @@ class ItemListUpdate extends Component {
     }
 
     render() {
-      var { room } = this.props;
-        var sampleItems = [
-          {
-            name: 'Joe\'s Fan',
-            type: 'Fan',
-          },
-          {
-            name: 'Master BR Bed',
-            type: 'Bed',
-          },
-        ];
+      var { room, items } = this.props;
+      var new_items = new_items.filter((item) => {return item.roomName == room;});
 
         return (
           <div>
@@ -111,12 +102,13 @@ class ItemListUpdate extends Component {
                       <Grid container
                         spacing={24}>
                         <Grid item xs={12}>
-                          {sampleItems.map((item) => {
+                          {new_items.map((item) => {
                             return <ItemUpdate
                               key={item.name + item.type}
                               itemName={item.name}
                               itemType={item.type}
-                              onChange={this.handleChange}
+                              item={item}
+                              onChange={this.handleChange.bind(this)}
                             />
                           })}
                         </Grid>

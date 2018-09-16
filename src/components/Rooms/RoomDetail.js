@@ -76,11 +76,8 @@ class RoomDetail extends Component {
         rooms: this.props.rooms,
         items: this.props.items,
       });
-      this.forceUpdate();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-    }
 
     onSubmit = () => {
       var {user} = this.props;

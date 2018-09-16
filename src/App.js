@@ -97,7 +97,10 @@ class App extends Component {
           }}/>
           <Route path={routes.PDF_RECEIVER} component={ (props) => {return (<PdfReceiver uid={this.state.user} {...props} />)} } />
           <Route  path={routes.ITEM_INFO_UPDATE} component={(match) => {
-            return <ItemListUpdate user={user} room={match.match.params.room}/>;
+            return <ItemListUpdate
+              items={this.state.items}
+              user={user}
+              room={match.match.params.room}/>;
           }}/>
           <Route exact path={routes.DASHBOARD} component={() => {
             return <Dashboard rooms={this.state.rooms} items={this.state.items}/>
