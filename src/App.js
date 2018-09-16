@@ -17,10 +17,28 @@ import Landing from './components/Landing';
 import Initial_Q from './components/Initial_Q';
 import RoomSummary from './components/Rooms/RoomSummary';
 import RoomDetail from './components/Rooms/RoomDetail';
+<<<<<<< HEAD
+import PdfReceiver from './components/PdfReceiver';
+import { byPropKey } from './constants/lib';
+=======
 import ItemListUpdate from './components/Items/ItemListUpdate';
 import Dashboard from './components/Dashboard/Dashboard';
+>>>>>>> master
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    }
+  }
+  componentDidMount() {
+    auth.onAuthStateChanged( (user) => {
+      this.setState(byPropKey('user', user.uid));
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -32,8 +50,12 @@ class App extends Component {
           <Route exact path={routes.INITIAL_Q} component={Initial_Q}/>
           <Route exact path={routes.ROOM_SUMM_Q} component={RoomSummary}/>
           <Route exact path={routes.ROOM_DETAIL_Q} component={RoomDetail}/>
+<<<<<<< HEAD
+          <Route path={routes.PDF_RECEIVER} component={ (props) => {return (<PdfReceiver uid={this.state.user} {...props} />)} } />
+=======
           <Route exact path={routes.ITEM_INFO_UPDATE} component={ItemListUpdate}/>
           <Route exact path={routes.DASHBOARD} component={Dashboard}/>
+>>>>>>> master
           </div>
         </HashRouter>
       </div>
