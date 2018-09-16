@@ -17,6 +17,8 @@ import Landing from './components/Landing';
 import Initial_Q from './components/Initial_Q';
 import RoomSummary from './components/Rooms/RoomSummary';
 import RoomDetail from './components/Rooms/RoomDetail';
+import ItemListUpdate from './components/Items/ItemListUpdate';
+import Dashboard from './components/Dashboard/Dashboard';
 
 class App extends Component {
   render() {
@@ -24,13 +26,14 @@ class App extends Component {
       <div className="App">
         <HashRouter>
           <div>
-
           <Route exact path={routes.LANDING} component={Landing}/>
           <Route exact path={routes.SIGN_UP} component={SignUp}/>
           <Route exact path={routes.LOGIN} component={Login}/>
           <Route exact path={routes.INITIAL_Q} component={Initial_Q}/>
           <Route exact path={routes.ROOM_SUMM_Q} component={RoomSummary}/>
           <Route exact path={routes.ROOM_DETAIL_Q} component={RoomDetail}/>
+          <Route exact path={routes.ITEM_INFO_UPDATE} component={ItemListUpdate}/>
+          <Route exact path={routes.DASHBOARD} component={Dashboard}/>
           </div>
         </HashRouter>
       </div>
