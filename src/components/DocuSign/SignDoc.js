@@ -13,20 +13,20 @@ const OAuthToken = 'eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1
 const accountId = '13f85e8d-09a4-4167-9aea-248815eedd4e';
 
 //Recipient Information goes here
-const claimantName = '';
-const claimantEmail = '';
+const claimantName = 'Brian Kitano';
+const claimantEmail = 'brian.kitano@yale.edu';
 
-const insurerName = '';
-const insurerEmail = '';
+const insurerName = 'Joe Lanzone';
+const insurerEmail = 'joseph.lanzone@yale.edu';
 
-const adjustorName = '';
-const adjustorEmail = '';
+const adjustorName = 'Joe Lanzone, Adjustor';
+const adjustorEmail = 'j3lanzone@gmail.com';
 
-var contractorName = '';
-var contractorEmail = '';
+var contractorName = 'daniel.keller';
+var contractorEmail = 'daniel.keller@yale.edu';
 
 //Point this to the document you wish to send's location on the local machine. Default location is __workingDir\fileName
-const fileName = newDoc; //IE: test.pdf
+const fileName = "TestFile.pdf"; //IE: test.pdf
 //-------------------------------------------------------------------------------
 
 
