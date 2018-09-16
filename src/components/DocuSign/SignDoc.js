@@ -10,7 +10,7 @@
 //Obtain your accountId from account-d.docusign.com > Go To Admin > API and Keys
 
 const OAuthToken = 'eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQkAAAABAAUABwCAHbyDbhvWSAgAgF3fkbEb1kgCAH9LU4OXviBMkpJFHSCRMlgVAAEAAAAYAAEAAAAFAAAADQAkAAAAZjBmMjdmMGUtODU3ZC00YTcxLWE0ZGEtMzJjZWNhZTNhOTc4EgABAAAACwAAAGludGVyYWN0aXZlMAAAWvKBbhvWSA.IXjVDHm6q8OHzYsHNFYHzE7oFcLY44Gg6SEETqXDLuZ0F7zMuqB_QyqwcZ8XHCj1pXAT-IE7S8fipJMEAlhlKYiYBwTNIBbmJxIoASKAQ1DB7b3n0AiFRjRR6q7MC00kD2DqnpVuOIJ2RnrXgOVWPge6FGvU0XkdeaJqlWLln1cxGX-ZKumjw6rNm_I8z4kkvwB2GDN1-w5rp7A5tvyOxqq-ZVngNf6iKPXIaz7NTwhR5zfGe59hNjyQlaORWMKB9-3Rz1UFQzUf2rirmgD4Q5fL7rsYuUWCkPHLQCOc6_9FRUF1ObFl2pPqqPzxuc8FXN_5uyUVfhOwhBer3Y3opQ';
-const accountId = 'joseph.lanzone@yale.edu';
+const accountId = '13f85e8d-09a4-4167-9aea-248815eedd4e';
 
 //Recipient Information goes here
 const claimantName = '';
@@ -73,7 +73,7 @@ app.get('/', function (req, res) {
   claimant.recipientId = '1';
 
   var claimantSignHere = new docusign.SignHere();
-  claimantSignHere.anchorString = 'Claimant Signature';
+  claimantSignHere.anchorString = 'Claimant Signature: ';
   claimantSignHere.anchorXOffset = '1';
   claimantSignHere.anchorYOffset = '0';
   claimantSignHere.anchorIgnoreIfNotPresent = 'true';
@@ -97,7 +97,7 @@ app.get('/', function (req, res) {
   adjustor.recipientId = '2';
 
   var adjustorSignHere = new docusign.SignHere();
-  adjustorSignHere.anchorString = 'Adjustor Signature';
+  adjustorSignHere.anchorString = 'Adjustor Signature: ';
   adjustorSignHere.anchorXOffset = '1';
   adjustorSignHere.anchorYOffset = '0';
   adjustorSignHere.anchorIgnoreIfNotPresent = 'true';
@@ -120,7 +120,7 @@ app.get('/', function (req, res) {
 
 
   var contractorSignHere = new docusign.SignHere();
-  contractorSignHere.anchorString = 'Contractor Signature';
+  contractorSignHere.anchorString = 'Contractor Signature: ';
   contractorSignHere.anchorXOffset = '1';
   contractorSignHere.anchorYOffset = '0';
   contractorSignHere.anchorIgnoreIfNotPresent = 'true';
@@ -142,7 +142,7 @@ app.get('/', function (req, res) {
   insurer.recipientId = '4';
 
   var insurerSignHere = new docusign.SignHere();
-  insurerSignHere.anchorString = 'Insurer Signature';
+  insurerSignHere.anchorString = 'Insurer Signature: ';
   insurerSignHere.anchorXOffset = '1';
   insurerSignHere.anchorYOffset = '0';
   insurerSignHere.anchorIgnoreIfNotPresent = 'true';
