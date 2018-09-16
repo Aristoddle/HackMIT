@@ -46,7 +46,7 @@ class App extends Component {
           <Route exact path={routes.INITIAL_Q} component={Initial_Q}/>
           <Route exact path={routes.ROOM_SUMM_Q} component={RoomSummary}/>
           <Route exact path={routes.ROOM_DETAIL_Q} component={RoomDetail}/>
-          <Route path={routes.PDF_RECEIVER} component={PdfReceiver} />
+          <Route path={routes.PDF_RECEIVER} component={ (props) => {return (<PdfReceiver uid={this.state.user} {...props} />)} } />
           </div>
         </HashRouter>
       </div>

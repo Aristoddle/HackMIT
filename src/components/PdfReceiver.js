@@ -7,14 +7,19 @@ class PdfReceiver extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            buffer: null,
+            buffer: [],
+            error: ''
         }
     }
 
     componentDidMount() {  
-        fetch('https://us-central1-hackmit-7c665.cloudfunctions.net/generatePdf?uid=' + this.props.uid).then( (results) => {
-            this.setState(byPropKey('buffer', results.json()));
-        });
+        fetch('https://us-central1-hackmit-7c665.cloudfunctions.net/generatePdf?uid=' + this.props.uid)
+        .then( (results) => {
+            console.log(results);
+            this.setState(byPropKey('buffer', results));
+        }).catch( (error) => {
+            this.setState(byPropKey('error', error));
+        })
     }
 
     render() {
