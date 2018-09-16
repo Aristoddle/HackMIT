@@ -40,7 +40,7 @@ class RoomSummaryInput extends Component {
                             label={'Room Name ' + roomNumber}
                             value={roomNames[roomNumber]}
                             onChange={(e) => {
-                              this.handleRoomNumberChange(roomNumber, e.target.value);
+                              handleRoomNumberChange(roomNumber, e.target.value);
                             }}
                             type='text'
                             helperText='Required'

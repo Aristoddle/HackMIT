@@ -55,7 +55,9 @@ class ItemUpdate extends Component {
     render() {
         const {
           itemName,
-          itemType
+          itemType,
+          onChange,
+          key
         } = this.props;
 
         return (
@@ -86,8 +88,9 @@ class ItemUpdate extends Component {
                             label='Description'
                             value={this.state.description}
                             onChange={(e) => {
-                              this.setState(byPropKey('description', e.target.value));
-
+                              this.setState(byPropKey('description', e.target.value), () => {
+                                this.handleChange(this.state, key)
+                              });
                             }}
                             type='text'
                           />
@@ -99,7 +102,9 @@ class ItemUpdate extends Component {
                             label='Approximate Date of Purchase'
                             value={this.state.date}
                             onChange={(e) => {
-                              this.setState(byPropKey('date', e.target.value))
+                              this.setState(byPropKey('date', e.target.value), () => {
+                                this.handleChange(this.state, key)
+                              });
                           }}
                             type='text'
                           />
@@ -111,7 +116,9 @@ class ItemUpdate extends Component {
                             label='Amazon Link to Replacement'
                             value={this.state.amazon}
                             onChange={(e) => {
-                              this.setState(byPropKey('amazon', e.target.value))
+                              this.setState(byPropKey('amazon', e.target.value), () => {
+                                this.handleChange(this.state, key)
+                              });
                             }}
                             type='text'
                           />
@@ -123,7 +130,9 @@ class ItemUpdate extends Component {
                             label='Features'
                             value={this.state.features}
                             onChange={(e) => {
-                              this.setState(byPropKey('features', e.target.value))
+                              this.setState(byPropKey('features', e.target.value), () => {
+                                this.handleChange(this.state, key)
+                              });
                             }}
                             type='text'
                             helperText='The more detailed you can be, the better.'

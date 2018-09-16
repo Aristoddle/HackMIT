@@ -12,6 +12,9 @@ import Divider from '@material-ui/core/Divider';
 
 import RoomSummaryInput from './RoomSummaryInput';
 
+import * as routes from '../../constants/routes';
+import RouteButton from '../RouteButton';
+
 import {addRoom} from '../../firebase/database/databaseApi';
 
 const INITIAL_STATE = {
@@ -39,7 +42,7 @@ class RoomSummary extends Component {
         this.state = {...INITIAL_STATE}
     }
 
-    handleRoomNumberChange(roomNumber, name) {
+    handleRoomNumberChange = (roomNumber, name) => {
       var roomNames = this.state.roomNames;
       roomNames[roomNumber] = name;
       this.setState({
@@ -120,9 +123,9 @@ class RoomSummary extends Component {
                       <Grid container spacing={24}>
                         <Grid item xs={10}></Grid>
                         <Grid item xs={2}>
-                          <Button onClick={this.onSubmit}>
+                          <RouteButton onSubmit={this.onSubmit} route={routes.DASHBOARD}>
                             Submit
-                          </Button>
+                          </RouteButton>
                         </Grid>
                       </Grid>
                     </CardContent>
